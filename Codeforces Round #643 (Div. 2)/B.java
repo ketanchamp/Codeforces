@@ -1,31 +1,52 @@
-//Written in Java by @Ketan -- https://codeforces.com/contest/1355/problem/A
+//Written in Java by @Ketan -- https://codeforces.com/contest/1355/problem/B
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class A{
+public class B{
     static class Task {
-        private long[] get(long num){
-            long mini=10,maxi=0;
-            while(num>0){
-                mini=Math.min(mini,num%10);
-                maxi=Math.max(maxi,num%10);
-                num/=10;
-            }
-            return new long[]{mini,maxi};
-        }
         public void solve(int testNumber,InputReader in,PrintWriter out){
             int t=in.nextInt();
             while((t--)>0){
-                long a=in.nextLong(),k=in.nextLong();
-                long prev=a;
-                for(int i=1;i<k;i++){
-                    long [] minmax=get(prev);
-                    if(minmax[0]==0) break;
-                    prev+=minmax[0]*minmax[1];
+                int n=in.nextInt();
+                long []arr=new long[n];
+                for(int i=0;i<n;i++){
+                    arr[i]=in.nextLong();
                 }
-                out.println(prev);
+                sort(arr);
+                long curr=0,ans=0;
+                for(int i=0;i<n;i++){
+                    curr++;
+                    if(curr>=arr[i]){
+                        ans++;
+                        curr=0;
+                    }
+                }
+                out.println(ans);
             }
+        }
+    }
+    private static void sort(double[] arr) {
+        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
+        Arrays.sort(objArr);
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = objArr[i];
+        }
+    }
+
+    private static void sort(int[] arr) {
+        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
+        Arrays.sort(objArr);
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = objArr[i];
+        }
+    }
+
+    private static void sort(long[] arr) {
+        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
+        Arrays.sort(objArr);
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = objArr[i];
         }
     }
     private static void solve() {
@@ -76,5 +97,3 @@ public class A{
 
 
 }
-
-
